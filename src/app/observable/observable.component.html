@@ -1,0 +1,23 @@
+<div class="container">
+  <p>Check the Console!</p>
+  <button class="btn btn-primary" (click)="unsubscribe()">Unsubscribe</button>
+<br>
+  <hr>
+
+<h2>ngSwitch</h2>
+
+<select #select [(ngModel)]="choice">
+  <option value="one">1</option>
+  <option value="two">2</option>
+  <option value="three">3</option>
+  <option value="another">default</option>
+</select>
+
+<div [ngSwitch]="choice">
+  <h3 *ngSwitchCase="'one'">First</h3>
+  <h3 *ngSwitchCase="'two'">Second</h3>
+  <h3 *ngSwitchCase="'three'">Third</h3>
+  <h3 *ngSwitchDefault>Default</h3>
+</div>
+
+</div>

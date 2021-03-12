@@ -1,0 +1,59 @@
+
+<div class="container" style="margin-top: 50px">
+
+  <div class="input-group mb-3" id="searchGroup">
+    <input type="text" class="form-control" placeholder="Search By.." id="searchInput" [(ngModel)]="searchFilter">
+    <div class="input-group-append">
+      <select class="custom-select" id="searchBy" #searchBy="ngModel" name="searchBy" [ngModel]="name">
+        <option value="name">{{name}}</option>
+        <option>{{department}}</option>
+        <option>{{gender}}</option>
+        <option>{{age}}</option>
+        <option>{{title}}</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn btn-primary" style="float: right"  (click)="openForm()" >Add New</button>
+
+  <div *ngIf="false">
+    <br>
+    Value of Selected: {{searchBy.value}}
+  </div>
+  <hr style="clear: both">
+  <div>
+    <app-add-person *ngIf="formVisible" (hideForm)="formVisible = false" [currRow]="currRow" [flagInC]="flagInP"></app-add-person>
+  </div>
+
+
+
+
+  <table class="table table-bordered table-striped" >
+    <thead>
+    <th><a href="javascript:void(0)">Name</a></th>
+    <th><a href="javascript:void(0)">Department</a></th>
+    <th><a href="javascript:void(0)">Gender</a></th>
+    <th><a href="javascript:void(0)">Age</a></th>
+    <th><a href="javascript:void(0)">Title</a></th>
+    <th><a href="javascript:void(0)">Hire Date</a></th>
+    <th>Operation</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let e of employees | searchBy: searchFilter: searchBy.value  |paginate:{itemsPerPage:15, currentPage: p} ; let i = index  "
+        [className]="i==selectedRow? 'selected': null"
+        (click)="rowRespond(i)" >
+      <td>{{e.name}}</td>
+      <td>{{e.dept}}</td>
+      <td>{{e.gender}}</td>
+      <td>{{e.age}}</td>
+      <td>{{e.title}}</td>
+      <td>{{e.hireDate | date:'fullDate'}}</td>
+      <td><a href="#" (click)="updateEmployee(e, $event)">Update </a> |<a href="#" style="color: #ff0000" (click)="delEmployee(e._id, $event)"> Delete</a></td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <button class="btn btn-outline-dark" id="refresh" (click)="refresh()" >Refresh Table</button>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

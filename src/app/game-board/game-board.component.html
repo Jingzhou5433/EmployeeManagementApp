@@ -1,0 +1,27 @@
+<div class="container">
+
+
+    <h2>Tic Tac Toe</h2>
+    <div class="players">
+      <div class="player1">Player X</div>
+      <div class="player2">Player O</div>
+    </div>
+
+
+  <div class="msg" *ngIf="!showWin">
+    Player {{currPlayer===1? "O" : "X"}} wins! Hit reset button to restart...
+  </div>
+  <div class="msg" *ngIf="!showTie">
+    It is a Tie. Hit reset button to restart...
+  </div>
+  <table class="board" #myTb>
+    <tr *ngFor="let row of board" id="{{row}}">
+      <td *ngFor="let col of row" id="{{col}}" (click)="handler($event)" ></td>
+    </tr>
+  </table>
+
+  <div class="reset">
+    <button (click)="reset()"><span>Reset</span></button>
+  </div>
+</div>
+

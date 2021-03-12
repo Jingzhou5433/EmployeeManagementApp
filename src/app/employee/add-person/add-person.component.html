@@ -1,0 +1,79 @@
+<form #f="ngForm"  ngForm (ngSubmit)="onSubmit(f.value, currId, flagInC)">
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" #name="ngModel" placeholder="Name" ngModel required minlength="2">
+      <span *ngIf="!name.valid && name.touched">Please Enter a Valid Name.</span>
+
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" #title="ngModel" placeholder="Title" required ngModel>
+      <span *ngIf="!title.valid && title.touched">Please Enter a Valid title.</span>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="dept">Department</label>
+      <select class="custom-select" id="dept" name="dept" #dept="ngModel" [ngModel]="defaultOption" required ngModel>
+        <option selected disabled  >Choose...</option>
+        <option value="tech">tech</option>
+        <option>sale</option>
+        <option>admin</option>
+        <option>rear-service</option>
+
+      </select>
+      <span *ngIf="!dept.valid && dept.touched">Please Choose a Department.</span>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="age">Age</label>
+      <input type="number" min="18" max="100"
+             class="form-control"
+             id="age"
+             name="age"
+             #age="ngModel"
+             required ngModel
+             pattern="18|19|[2-9][0-9]"
+             value="{{currRow !=null ? currRow.age : ''}}"
+      >
+
+      <span *ngIf="!age.valid && age.touched">Please Input a Valid Age.</span>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="hireDate">HrieDate</label>
+      <input type="date" class="form-control" id="hireDate" name="hireDate" #date="ngModel"  required ngModel>
+      <span *ngIf="!date.valid && date.touched">Please Provide a Date.</span>
+    </div>
+  </div>
+
+
+  <div class="form-row">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male" #gen="ngModel" ngModel required>
+      <label class="form-check-label" for="inlineRadio1">Male</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female" #gen="ngModel" ngModel required>
+      <label class="form-check-label" for="inlineRadio2">Female</label>
+    </div>
+    <span *ngIf="!gen.valid && f.touched">Please Select a gender.</span>
+  </div>
+
+  <div class="form-row" style="margin-top: 20px">
+    <button class="btn btn-success" type="submit" [disabled]="!f.valid" >Submit form</button>
+    <button class="btn btn-secondary ml-auto" (click)="clearForm()">Cancel</button>
+  </div>
+
+</form>
+<div *ngIf="false">
+  CurrRow: {{currRow | json}}
+  <br>
+  ToBeUpdate: {{toBeUpdate | json}}
+  <br>
+  Form Value: {{f.value | json}}
+  <br>
+  CurrID : {{currId}}
+</div>
+
+<hr>

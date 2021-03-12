@@ -1,0 +1,24 @@
+#searchGroup{
+  width: 30%;
+  float: left;
+}
+
+.selected{
+  background-color: RGBA(151, 222, 158,0.4) !important;
+}
+
+#refresh{
+  float: left;
+}
+
+.nav{
+  float: right;
+}
+table{
+  width: 100%;
+}
+
+pagination-controls{
+  float: right;
+  height: 30px;
+}
